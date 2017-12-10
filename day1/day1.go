@@ -3,35 +3,20 @@ package main
 import (
 	"fmt"
 	"github.com/tomp/aoc-2017-go/util"
-	"strconv"
 )
 
 const (
 	INPUTFILE string = "input.txt"
 )
 
-// parseDigits takes a string consisting of integer digits
-// and returns a slice of the integer value for each digit.
-func parseDigits(text string) (digits []int, err error) {
-	digits = make([]int, len(text))
-	for i, ch := range text {
-		val, err := strconv.Atoi(string(ch))
-		if err != nil {
-			return digits, err
-		}
-		digits[i] = val
-	}
-	return digits, nil
-}
-
-func sumRepeats1(text string) (total int, err error) {
+func sumRepeats1(text string) (int, error) {
     return sumRepeats(text, 1)
 }
 
-func sumRepeats(text string, gap int) (total int, err error) {
+func sumRepeats(text string, gap int) (int, error) {
 	n := len(text)
-	total = 0
-	digits, err := parseDigits(text)
+	total := 0
+	digits, err := util.ParseDigits(text)
 	if err != nil {
 		return total, err
 	}
