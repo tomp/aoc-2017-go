@@ -3,8 +3,8 @@ package util
 import (
 	"bufio"
 	"os"
-    "strconv"
-    "strings"
+	"strconv"
+	"strings"
 )
 
 // ReadLines returns the contents of the given file as a slice
@@ -12,14 +12,14 @@ import (
 func ReadLines(filename string) (lines []string, err error) {
 	file, err := os.Open(filename)
 	if err == nil {
-        defer file.Close()
+		defer file.Close()
 
-        scanner := bufio.NewScanner(file)
-        for scanner.Scan() {
-            lines = append(lines, scanner.Text())
-        }
-        err = scanner.Err()
-    }
+		scanner := bufio.NewScanner(file)
+		for scanner.Scan() {
+			lines = append(lines, scanner.Text())
+		}
+		err = scanner.Err()
+	}
 	return
 }
 
@@ -40,10 +40,10 @@ func ParseDigits(text string) (digits []int, err error) {
 // ParseInts takes a string consisting of space-separated
 // integers and return a slice of the integer values.
 func ParseInts(text string) ([]int, error) {
-    vals := []int{}
-    scanner := bufio.NewScanner(strings.NewReader(text))
-    scanner.Split(bufio.ScanWords)
-    for scanner.Scan() {
+	vals := []int{}
+	scanner := bufio.NewScanner(strings.NewReader(text))
+	scanner.Split(bufio.ScanWords)
+	for scanner.Scan() {
 		val, err := strconv.Atoi(scanner.Text())
 		if err != nil {
 			return vals, err
@@ -51,4 +51,13 @@ func ParseInts(text string) ([]int, error) {
 		vals = append(vals, val)
 	}
 	return vals, nil
+}
+
+// iAbs returns the absolute value of its integer argument.
+func IntAbs(v int) int {
+	if v < 0 {
+		return -v
+	} else {
+		return v
+	}
 }
